@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useReducer, useRef, useState } from "react";
+import "./App.css";
+import Name from "./Name";
+import NameProvider from "./context/NameContext";
+import reducer from "./context/reducer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [state, dispatch] = useReducer(reducer, { count: 1 });
 
+  const handleIncrement = () => {
+    dispatch({ type: "increament" });
+  };
+
+  const handleDecrement = () => {
+    dispatch({ type: "decrement" });
+  };
+console.log(state,'state')
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+    <NameProvider>
+      <Name />
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button onClick={handleIncrement}>add</button>
+        <button onClick={handleDecrement}>Substrac</button>
+        {state.count}
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </NameProvider>
+  );
 }
 
-export default App
+export default App;
