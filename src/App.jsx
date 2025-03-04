@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useId, useReducer, useRef, useState } from "react";
 import "./App.css";
 import Name from "./Name";
 import NameProvider from "./context/NameContext";
@@ -17,6 +17,9 @@ function App() {
     dispatch({ type: "decrement" });
   };
 
+  const handleProgressBar = () => {
+    setProgressList([...progressList, { id: useId() }]);
+  };
   return (
     <NameProvider>
       <Name />
@@ -30,13 +33,9 @@ function App() {
         </p>
       </div>
       {progressList.map((item) => (
-        <ProgressBar key={item?.id} start={false} />
+        <ProgressBar key={item?.id} />
       ))}
-      <button
-        onClick={() => setProgressList([...progressList, { id: Date.now() }])}
-      >
-        Add Progress Bar
-      </button>
+      <button onClick={handleProgressBar}>Add Progress Bar</button>
     </NameProvider>
   );
 }
