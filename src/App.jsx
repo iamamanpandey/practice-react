@@ -17,9 +17,6 @@ function App() {
     dispatch({ type: "decrement" });
   };
 
-
-
-  console.log("App rendered ",progress);
   return (
     <NameProvider>
       <Name />
@@ -32,7 +29,14 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <ProgressBar progress={progress} />
+      {progressList.map((item) => (
+        <ProgressBar key={item?.id} start={false} />
+      ))}
+      <button
+        onClick={() => setProgressList([...progressList, { id: Date.now() }])}
+      >
+        Add Progress Bar
+      </button>
     </NameProvider>
   );
 }
