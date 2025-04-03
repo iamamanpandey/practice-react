@@ -1,0 +1,11 @@
+.slider{
+    margin-top: 50px;
+}
+
+
+.slider-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}

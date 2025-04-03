@@ -1,9 +1,9 @@
-import { useId, useReducer, useRef, useState } from "react";
+import { useId, useReducer, useState } from "react";
 import "./App.css";
-import Name from "./Name";
-import NameProvider from "./context/NameContext";
-import reducer from "./context/reducer";
-import ProgressBar from "./ProgressBar";
+import Name from "../Name";
+import NameProvider from "../context/NameContext";
+import reducer from "../context/reducer";
+import ProgressBar from "../ProgressBar";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, { count: 1 });
